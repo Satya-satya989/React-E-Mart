@@ -27,15 +27,16 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t E-mart .'
+                sh 'docker build -t e-mart .'
             }
         }
 
         stage('Docker Run') {
-            steps {
-                sh 'docker rm -f E-mart-container || true'
-                sh 'docker run -d -p 8086:80 --name E-mart-container E-mart'
-            }
-        }
+        steps {
+            sh 'docker stop e-mart-container || true'
+            sh 'docker rm e-mart-container || true'
+            sh 'docker run -d -p 8086:80 --name e-mart-container e-mart'
+       }
+    }
     }
 }
