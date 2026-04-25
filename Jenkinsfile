@@ -4,6 +4,9 @@ pipeline {
     tools {
         nodejs 'NodeJS'
     }
+    environment {
+    SONARQUBE_ENV = 'sq'
+    }
 
     stages {
 
