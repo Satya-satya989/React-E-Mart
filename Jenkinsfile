@@ -24,6 +24,24 @@ pipeline {
                 sh 'CI=false npm run build || echo "No build step, skipping..."'
             }
         }
+        stage('SonarQube Analysis') {
+        steps {
+            withSonarQubeEnv("${SONARQUBE_ENV}") {
+                sh '''
+                npx sonar-scanner \
+                -Dsonar.projectKey=e-mart \
+                -Dsonar.sources=src
+              '''
+            }
+         }
+      }
+       stage('Quality Gate') {
+       steps {
+        timeout(time: 2, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+          }
+        }
+       }
 
         stage('Docker Build') {
             steps {
