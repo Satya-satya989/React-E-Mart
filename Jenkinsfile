@@ -46,6 +46,14 @@ pipeline {
         }
        }
 
+        stage('JENKINS TO NEXUS') {
+            steps {
+              withMaven(globalMavenSettingsConfig: 'settings.xml', jdk: 'jkd17', traceability: true) {
+             sh 'mvn deploy'
+             }
+            }
+        }      
+
         stage('Docker Build') {
             steps {
                 sh 'docker build -t e-mart .'
