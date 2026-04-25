@@ -34,7 +34,7 @@ pipeline {
         stage('Docker Run') {
             steps {
                 sh 'docker rm -f E-mart-container || true'
-                sh 'docker run -d -p 8085:80 --name E-mart-container E-mart'
+                sh 'docker run -d -p 8086:80 --name E-mart-container E-mart'
             }
         }
     }
