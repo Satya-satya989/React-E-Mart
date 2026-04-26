@@ -65,6 +65,21 @@ pipeline {
             }
         }
 
+        stage('Docker Push') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+            sh '''
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+
+            docker tag e-mart $DOCKER_USER/e-mart:latest
+
+            docker push $DOCKER_USER/e-mart:latest
+            '''
+        }
+    }
+}
+        
+
         stage('Docker Run') {
         steps {
             sh 'docker stop e-mart-container || true'
