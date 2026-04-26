@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: e-mart-container
-        image: kiranimg/e-mart:latest
+        image: dock12999dock777/e-mart:latest
         ports:
         - containerPort: 80
