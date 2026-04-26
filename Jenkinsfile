@@ -12,7 +12,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitCreds', url: 'https://github.com/Subhash-Rokkala/React-E-Mart.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'gitcred', url: 'https://github.com/Satya-satya989/React-E-Mart.git']])
             }
         }
 
